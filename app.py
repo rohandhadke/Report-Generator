@@ -10,6 +10,10 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 app = Flask(__name__)
 
+@app.route("/user/login", methods=["POST","GET"])
+def userLogin():
+    return render_template("user/login.html")
+
 @app.route("/", methods=['GET','POST'])
 def index():
     return render_template("index.html")
