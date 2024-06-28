@@ -14,6 +14,10 @@ app = Flask(__name__)
 def userLogin():
     return render_template("user/login.html")
 
+@app.route("/user/signup", methods=["POST","GET"])
+def userSignup():
+    return render_template("user/signup.html")
+
 @app.route("/", methods=['GET','POST'])
 def index():
     return render_template("index.html")
