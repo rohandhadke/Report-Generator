@@ -10,35 +10,31 @@
 </head>
 
 <body>
-  
+
   <!-- nav bar -->
 
-  <div class="container-fluid">
+  <div class="container">
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-      <div class="container-fluid">
+      <div class="container">
         <a class="navbar-brand" href="#">Report Generator</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="user/profile.html">My Reports</a>
-            </li>
-          </ul>
-          <nav class="navbar bg-body-tertiary">
-            <div class="container">
-              <a class="navbar-brand" href="user/profile.html">
-                <span>Profile</span>
-                <img src="user.png" alt="Bootstrap" width="25" height="25">
-              </a>
-            </div>
-          </nav>
-        </div>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        </ul>
+        <nav class="navbar bg-body-tertiary">
+          <li class="nav-item dropdown" style="list-style: none;">
+            <a type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static"
+              aria-expanded="false">
+              <img src="user.png" alt="Bootstrap" width="25" height="25">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+              <li><button class="dropdown-item" type="button"><a href="user/profile.html" style="text-decoration: none; color: #000;">Profile</a></button></li>
+              <li><button class="dropdown-item" type="button"><a href="user/myReports.html" style="text-decoration: none; color: #000;">My Reports</a></button></li>
+              <li>
+                  <hr class="dropdown-divider">
+              </li>
+              <li><button class="dropdown-item" type="button">Logout</button></li>
+            </ul>
+          </li>
+        </nav>
       </div>
     </nav>
   </div>
@@ -180,10 +176,11 @@
   </div>
   <!-- main container end -->
 
-<!-- start Footer -->
+  <!-- start Footer -->
   <footer>
     <div class="container-fluid bg-">
-      <p class="text-center">Copyright &copy; 2024 | Designed and Developed by <a href="https://lsoysapps.com/" target="_blank" style="text-decoration: none;">LSOYS apps & games</a></p>
+      <p class="text-center">Copyright &copy; 2024 | Designed and Developed by <a href="https://lsoysapps.com/"
+          target="_blank" style="text-decoration: none;">LSOYS apps & games</a></p>
     </div>
     <!-- end container -->
   </footer>
