@@ -18,9 +18,17 @@ def userLogin():
 def userSignup():
     return render_template("user/signup.html")
 
+@app.route("/user/profile", methods=["POST","GET"])
+def profile():
+    return render_template("user/profile.html")
+
+@app.route("/user/myReports", methods=["POST", "GET"])
+def myreports():
+    return render_template("user/myReports.html")
+
 @app.route("/", methods=['GET','POST'])
 def index():
-    return render_template("index.html")
+    return render_template("Home.html")
 
 @app.route("/generatereport", methods=['POST'])
 def generatereport():
