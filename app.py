@@ -1,24 +1,68 @@
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_file, session, redirect, url_for
+from flask_login import login_manager, UserMixin, login_user, login_required, logout_user, current_user
 import openai
 import os
 from docx import Document
 from docx.shared import Pt
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
 from io import BytesIO
+from db import get_db
+
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 app = Flask(__name__)
 
-@app.route("/user/login", methods=["POST","GET"])
-def userLogin():
+app.secret_key = os.environ.get('SECRET_KEY', 'default_secret_key')
+db = get_db()
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    message = ""
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        phone = request.form['phone']
+        branch = request.form['branch']
+        password = request.form['password']
+        cnfpassword = request.form['cnfpassword']
+
+        # Check if passwords match
+        if password != cnfpassword:
+            message = 'Passwords do not match!'
+            return render_template("user/signup.html", message=message)
+
+        # Check if email already exists
+        if db.users.find_one({'email': email}):
+            message = 'Email already exists!'
+            return render_template("user/signup.html", message=message)
+
+        # Insert user into the database
+        try:
+            db.users.insert_one({'_id': email, 'name': name, 'email': email, 'phone': phone, 'branch': branch, 'password': password})
+            message = 'Signup successful!'
+            return redirect(url_for('login'))
+        except Exception as e:
+            message = f'An error occurred: {str(e)}'
+            return render_template("user/signup.html", message=message)
+
+    return render_template("user/signup.html", message=message)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        user = db.users.find_one({'email': email, 'password': password})
+        if user:
+            return 'Logged in successfully!'
+        return 'Invalid email or password!'
     return render_template("user/login.html")
 
-@app.route("/user/signup", methods=["POST","GET"])
-def userSignup():
-    return render_template("user/signup.html")
 
-@app.route("/user/profile", methods=["POST","GET"])
+
+@app.route("/profile", methods=["POST","GET"])
 def profile():
     return render_template("user/profile.html")
 

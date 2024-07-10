@@ -19,22 +19,31 @@
         </ul>
         <nav class="navbar bg-body-tertiary">
           <li class="nav-item dropdown" style="list-style: none;">
-            <a type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static"
-              aria-expanded="false">
-              <img src={{ url_for('static', filename='images/user.png' ) }} alt="Bootstrap" width="25" height="25">
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-              <li><button class="dropdown-item" type="button"><a href={{url_for('profile')}}
-                    style="text-decoration: none; color: #000;">Profile</a></button></li>
-              <li><button class="dropdown-item" type="button"><a href={{url_for('myreports')}}
-                    style="text-decoration: none; color: #000;">My Reports</a></button></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><button class="dropdown-item" type="button">Logout</button></li>
-            </ul>
+              {% if user_logged_in %}
+              <a type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                  <img src="{{ url_for('static', filename='images/user.png') }}" alt="Bootstrap" width="25" height="25">
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+                  <li>
+                      <button class="dropdown-item" type="button">
+                          <a href="{{ url_for('profile') }}" style="text-decoration: none; color: #000;">Profile</a>
+                      </button>
+                  </li>
+                  <li>
+                      <button class="dropdown-item" type="button">
+                          <a href="{{ url_for('myreports') }}" style="text-decoration: none; color: #000;">Dashboard</a>
+                      </button>
+                  </li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><button class="dropdown-item" type="button">Logout</button></li>
+              </ul>
+              {% else %}
+              <a href="{{ url_for('login') }}" class="btn">
+                  <img src="{{ url_for('static', filename='images/login_icon.png') }}" alt="Login" width="25" height="25">
+              </a>
+              {% endif %}
           </li>
-        </nav>
+      </nav>
       </div>
     </nav>
   </div>

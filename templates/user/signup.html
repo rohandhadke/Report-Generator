@@ -17,39 +17,48 @@
             <h3 align="center">Sign Up</h3>
           </div>
           <div class="card-body">
-            <form method="POST" action="/login.html">
+            {% if message %}
+              <div class="alert alert-warning" role="alert">
+                {{ message }}
+              </div>
+            {% endif %}
+            <form method="POST" action="/signup">
               <div class="mb-3">
                 <label for="exampleInputText" class="form-label">Name</label>
-                <input class="form-control" type="text" placeholder="" aria-label="default input example" required>
+                <input class="form-control" type="text" placeholder="" aria-label="default input example" name="name" required>
               </div>
               <div class="mb-3">
                 <label for="exampleInputNumber" class="form-label">Phone Number</label>
-                <input class="form-control" type="Number" placeholder="+91" aria-label="default input example" required>
+                <input class="form-control" name="phone" type="Number" placeholder="+91" aria-label="default input example" required>
               </div>
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
               </div>
               <div class="mb-3">
-                <label for="exampleInputSelect" class="form-label">Qualification</label>
-                <select class="form-select" aria-label="Default select example">
+                <label for="exampleInputSelect" class="form-label">Branch</label>
+                <select class="form-select" aria-label="Default select example" name="branch">
                   <option selected></option>
-                  <option value="1">Degree</option>
-                  <option value="2">Diploma</option>
-                  <option value="3">Others</option>
+                  <option value="computer">Computer</option>
+                  <option value="IT">Information Technology</option>
+                  <option value="AIDS">Artificial intelligence and Data Science</option>
+                  <option value="ENTC">Electronics and Telecommunication</option>
+                  <option value="civil">Civil</option>
+                  <option value="Mechanical">Mechanical</option>
+                  <option value="Automobile">Automobile</option>
                 </select>
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" required>
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1" required>
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Conform Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" required>
+                <input type="password" name="cnfpassword" class="form-control" id="exampleInputPassword1" required>
               </div>
               <center>
                 <button type="submit" class="btn" style="margin-top: 2%; background-color: orange;">Create account</button>
-                <p style="margin-top: 2%;">Aleready have account?<a href="signup.html" style="text-decoration: none;">Login</a></p>  <!-- Redirect to signup page -->
+                <p style="margin-top: 2%;">Aleready have account?<a href={{url_for('login')}} style="text-decoration: none;">Login</a></p>  <!-- Redirect to signup page -->
               </center>
             </form>
           </div>
